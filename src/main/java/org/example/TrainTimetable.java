@@ -39,4 +39,31 @@ public final class TrainTimetable {
         }
         return res;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Train train: setOfTrains) {
+            s.append(train.toString()).append("\n");
+        }
+        return s.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof TrainTimetable) {
+            TrainTimetable another = (TrainTimetable) obj;
+            if (this.setOfTrains.size() != another.setOfTrains.size()) return false;
+            boolean flag = true;
+            for (Train train: this.setOfTrains) {
+                if (!another.setOfTrains.contains(train)) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        else return false;
+    }
 }
